@@ -1,8 +1,23 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/swet-service/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "builder": "rspack",
+    "tsConfigPath": "apps/swet-service/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/swet-service",
+  "projects": {
+    "swet-service": {
+      "type": "application",
+      "root": "apps/swet-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/swet-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/swet-service/tsconfig.app.json"
+      }
+    }
   }
 }

@@ -18,5 +18,11 @@
     "strict": true,
     "strictPropertyInitialization": false,
     "types": ["vitest/globals", "node"]
-  }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/swet-service/tsconfig.app.json"
+    }
+  ]
 }
