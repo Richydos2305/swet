@@ -9,7 +9,8 @@
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
-    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "format": "prettier --write \"{apps,libs}/**/*.ts\"",
+    "format:check": "prettier --check \"{apps,libs}/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -23,6 +24,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
+    "*": [
+      "./scripts/check-filenames.sh"
+    ],
     "*.ts": [
       "oxlint --fix",
       "prettier --write"
@@ -36,6 +40,9 @@
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "@commitlint/types": "^21.2.0",
     "@nestjs/cli": "^12.0.0",
     "@nestjs/mau": "^0.2.6",
     "@nestjs/schematics": "^12.0.0",

@@ -14,7 +14,11 @@
     "sourceMap": true,
     "outDir": "./dist",
     "incremental": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "types": ["vitest/globals", "node"]
