@@ -1,8 +1,14 @@
 import { NestFactory } from '@nestjs/core';
-import { SwetServiceModule } from './swet-service.module.js';
+import { DatabaseConfig } from '@swet/common/core/database/database.config';
+import { SwetServiceModule } from './swet-service.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(SwetServiceModule);
-  await app.listen(process.env.port ?? 3000);
+
+  const databaseConfig = app.get(DatabaseConfig);
+
+  await databaseConfig.testConnection();
+
+  await app.listen(process.env.port ?? 5151);
 }
 await bootstrap();
