@@ -10,6 +10,15 @@
   "monorepo": true,
   "root": "apps/swet-service",
   "projects": {
+    "swet-common-lib": {
+      "type": "library",
+      "root": "libs/swet-common-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/swet-common-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/swet-common-lib/tsconfig.lib.json"
+      }
+    },
     "swet-service": {
       "type": "application",
       "root": "apps/swet-service",

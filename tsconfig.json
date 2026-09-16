@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
@@ -21,12 +21,20 @@
     "noImplicitOverride": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "types": ["vitest/globals", "node"]
+    "types": ["vitest/globals", "node"],
+    "paths": {
+      "@swet/common": ["./libs/swet-common-lib/src"],
+      "@swet/common/*": ["./libs/swet-common-lib/src/*"],
+      "apps/swet-service/src/*": ["./apps/swet-service/src/*"]
+    }
   },
   "files": [],
   "references": [
     {
       "path": "./apps/swet-service/tsconfig.app.json"
+    },
+    {
+      "path": "./libs/swet-common-lib/tsconfig.lib.json"
     }
   ]
 }
