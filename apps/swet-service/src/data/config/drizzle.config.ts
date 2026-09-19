@@ -1,7 +1,7 @@
 import type { DatasourceConfig } from '@swet/common/config/datasource.config';
 import { defineConfig } from 'drizzle-kit';
 import { readFileSync } from 'fs';
-import YAML from 'js-yaml';
+import { load } from 'js-yaml';
 import * as path from 'path';
 
 const raw = readFileSync(
@@ -9,10 +9,7 @@ const raw = readFileSync(
   'utf8',
 );
 
-const parsed = YAML.load(raw) as Record<
-  string,
-  Record<string, DatasourceConfig>
->;
+const parsed = load(raw) as Record<string, Record<string, DatasourceConfig>>;
 const datasourceConfig = parsed.swet.database;
 const url = datasourceConfig.url
   .replaceAll('${swet.database.', '')

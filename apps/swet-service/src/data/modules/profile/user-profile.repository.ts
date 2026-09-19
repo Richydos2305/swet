@@ -1,8 +1,8 @@
-import { DRIZZLE_TOKEN } from '@swet/common/core/database/database.module';
-import type { DrizzleAdapter } from '@swet/common/core/database/database.config';
-import { BaseRepository } from '@swet/common/modules/base/repository/base.repository';
 import { TransactionHost } from '@nestjs-cls/transactional';
 import { Inject, Injectable } from '@nestjs/common';
+import type { DrizzleAdapter } from '@swet/common/core/database/database.config';
+import { DRIZZLE_TOKEN } from '@swet/common/core/database/database.module';
+import { BaseRepository } from '@swet/common/modules/base/repository/base.repository';
 import { and, eq, sql } from 'drizzle-orm';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import {
@@ -47,6 +47,22 @@ export class UserProfileRepository extends BaseRepository<
       .where(
         and(
           sql`LOWER(${userProfile.username}) = LOWER(${username.trim()})`,
+          eq(userProfile.deleted, false),
+        ),
+      )
+      .limit(1);
+    return result;
+  }
+
+  async findOneByProviderId(
+    providerId: string,
+  ): Promise<UserProfile | undefined | null> {
+    const [result] = await this.db
+      .select()
+      .from(userProfile)
+      .where(
+        and(
+          eq(userProfile.providerId, providerId),
           eq(userProfile.deleted, false),
         ),
       )
