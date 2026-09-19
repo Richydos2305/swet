@@ -1,0 +1,32 @@
+CREATE TYPE "public"."authentication_provider" AS ENUM('EMAIL', 'GOOGLE');--> statement-breakpoint
+CREATE TYPE "public"."kyc_status" AS ENUM('UNVERIFIED', 'PENDING', 'VERIFIED', 'REJECTED');--> statement-breakpoint
+CREATE TABLE "user_profile" (
+	"id" uuid PRIMARY KEY NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"created_by" varchar,
+	"updated_at" timestamp DEFAULT now() NOT NULL,
+	"updated_by" varchar,
+	"deleted" boolean DEFAULT false NOT NULL,
+	"user_profile_public_id" varchar(32) NOT NULL,
+	"username" varchar(255),
+	"email" varchar(255) NOT NULL,
+	"phone_number" varchar(255),
+	"password_hash" varchar(255),
+	"first_name" varchar(255) NOT NULL,
+	"last_name" varchar(255) NOT NULL,
+	"date_of_birth" date,
+	"bvn" varchar(11),
+	"bvn_verified_at" timestamp,
+	"nin" varchar(11),
+	"nin_verified_at" timestamp,
+	"kyc_status" "kyc_status" DEFAULT 'UNVERIFIED' NOT NULL,
+	"authentication_provider" "authentication_provider" NOT NULL,
+	"provider_id" varchar(255),
+	CONSTRAINT "user_profile_userProfilePublicId_unique" UNIQUE("user_profile_public_id"),
+	CONSTRAINT "user_profile_username_unique" UNIQUE("username"),
+	CONSTRAINT "user_profile_email_unique" UNIQUE("email"),
+	CONSTRAINT "user_profile_phoneNumber_unique" UNIQUE("phone_number"),
+	CONSTRAINT "user_profile_bvn_unique" UNIQUE("bvn"),
+	CONSTRAINT "user_profile_nin_unique" UNIQUE("nin"),
+	CONSTRAINT "user_profile_providerId_unique" UNIQUE("provider_id")
+);

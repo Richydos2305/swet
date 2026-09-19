@@ -1,0 +1,9 @@
+{
+  "cSpell.words": ["swet"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  }
+}
