@@ -14,6 +14,9 @@ pnpm-debug.log*
 .env.local
 .env.*.local
 
+apps/**/*.yml
+!apps/**/*.yml.example
+
 # OS
 .DS_Store
 
@@ -28,3 +31,5 @@ pnpm-debug.log*
 # coverage
 /coverage
 /.nyc_output
+
+.tmp/

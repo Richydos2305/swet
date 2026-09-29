@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "rootDir": "./src",
+    "outDir": "../../dist/libs/swet-common-lib",
+    "paths": {
+      "@swet/common": ["./src"],
+      "@swet/common/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+}
