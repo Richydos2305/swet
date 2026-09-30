@@ -25,6 +25,8 @@
     "paths": {
       "@swet/common": ["./libs/swet-common-lib/src"],
       "@swet/common/*": ["./libs/swet-common-lib/src/*"],
+      "@swet/integration": ["./libs/swet-integration-lib/src"],
+      "@swet/integration/*": ["./libs/swet-integration-lib/src/*"],
       "apps/swet-service/src/*": ["./apps/swet-service/src/*"]
     }
   },

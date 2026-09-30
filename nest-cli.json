@@ -19,6 +19,15 @@
         "tsConfigPath": "libs/swet-common-lib/tsconfig.lib.json"
       }
     },
+    "swet-integration-lib": {
+      "type": "library",
+      "root": "libs/swet-integration-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/swet-integration-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/swet-integration-lib/tsconfig.lib.json"
+      }
+    },
     "swet-service": {
       "type": "application",
       "root": "apps/swet-service",
