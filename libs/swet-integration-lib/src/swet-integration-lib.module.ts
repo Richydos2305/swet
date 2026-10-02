@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SwetIntegrationLibService } from './swet-integration-lib.service.js';
+import { IdentityVerificationModule } from './identity/identity-verification.module';
 
 @Module({
-  providers: [SwetIntegrationLibService],
-  exports: [SwetIntegrationLibService],
+  imports: [IdentityVerificationModule],
+  exports: [IdentityVerificationModule],
 })
 export class SwetIntegrationLibModule {}
