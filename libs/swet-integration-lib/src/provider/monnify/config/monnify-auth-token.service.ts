@@ -1,8 +1,8 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Inject, Injectable } from '@nestjs/common';
+import { IntegrationApiError } from '@swet/integration/core/api/integration-api.error';
 import { IdentityProvider } from '@swet/integration/identity/identity.constant';
 import type { Cache } from 'cache-manager';
-import { IntegrationApiError } from '../../../core/error/integration-api.error';
 import { TypedHttpClient } from '../../../core/http/typed-http-client';
 import { MonnifyLoginResponse } from '../dto/monnify-login-response.dto';
 import { MonnifyConfig } from './monnify.config';
