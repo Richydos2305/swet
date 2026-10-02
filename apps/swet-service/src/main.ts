@@ -10,6 +10,8 @@ import { SwetServiceModule } from './swet-service.module';
 async function bootstrap() {
   const app = await NestFactory.create(SwetServiceModule);
 
+  app.enableShutdownHooks();
+
   const serviceConfig = app.get(ServiceConfig);
   const securityConfig = app.get(SecurityConfig);
 
