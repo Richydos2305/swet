@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { IProviderHandler } from '@swet/common/core/provider/provider-handler.interface';
 import { ProviderHandlerRegistry } from '@swet/common/core/provider/provider-handler.registry';
 import { IntegrationConfig } from '../core/config/integration-config';
-import { IntegrationResponse } from '../core/provider/integration-response';
+import { IntegrationResponse } from '../core/api/integration-response';
 import { VerifyBvnRequest, VerifyBvnResponse } from './dto/verify-bvn.dto';
 import { VerifyNinRequest, VerifyNinResponse } from './dto/verify-nin.dto';
 import { IdentityCheckType } from './identity.constant';
