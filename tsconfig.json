@@ -37,6 +37,12 @@
     },
     {
       "path": "./libs/swet-common-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/swet-integration-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ]
 }
