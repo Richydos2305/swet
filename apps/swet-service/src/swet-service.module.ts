@@ -10,6 +10,7 @@ import {
   StaticDatabaseModule,
 } from '@swet/common/core/database/database.module';
 import { IdentityVerificationModule } from '@swet/integration/identity/identity-verification.module';
+import { NotificationDispatcherPortModule } from '@swet/notification/contract/notification-dispatcher-port.module';
 import { ClsModule } from 'nestjs-cls';
 import { join } from 'path';
 import { AuthenticationModule } from './service/modules/authentication/authentication.module';
@@ -36,6 +37,7 @@ import { OnboardingModule } from './service/modules/onboarding/onboarding.module
       ],
     }),
     StaticDatabaseModule,
+    NotificationDispatcherPortModule,
     AuthenticationModule,
     OnboardingModule,
     IdentityVerificationModule,
