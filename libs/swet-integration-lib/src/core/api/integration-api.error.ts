@@ -1,4 +1,8 @@
-import { AxiosError } from 'axios';
+import {
+  HttpNetworkError,
+  HttpResponseError,
+  HttpTimeoutError,
+} from '@nestjs/http-client';
 
 export class IntegrationApiError extends Error {
   constructor(
@@ -17,14 +21,26 @@ export class IntegrationApiError extends Error {
     service: string,
     error: unknown,
   ): unknown {
-    if (!(error instanceof AxiosError)) return error;
+    if (error instanceof HttpResponseError) {
+      const body = error.body as
+        { responseMessage?: string; responseCode?: string } | undefined;
 
-    return new IntegrationApiError(
-      provider,
-      service,
-      error.response?.data?.responseMessage ?? error.message,
-      error.response?.status,
-      error.response?.data?.responseCode,
-    );
+      return new IntegrationApiError(
+        provider,
+        service,
+        body?.responseMessage ?? error.message,
+        error.status,
+        body?.responseCode,
+      );
+    }
+
+    if (
+      error instanceof HttpTimeoutError ||
+      error instanceof HttpNetworkError
+    ) {
+      return new IntegrationApiError(provider, service, error.message);
+    }
+
+    return error;
   }
 }

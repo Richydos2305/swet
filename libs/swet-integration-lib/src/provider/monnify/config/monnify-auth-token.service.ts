@@ -1,20 +1,20 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Inject, Injectable } from '@nestjs/common';
+import { HttpClient, InjectHttpClient } from '@nestjs/http-client';
 import { IntegrationApiError } from '@swet/integration/core/api/integration-api.error';
 import { IdentityProvider } from '@swet/integration/identity/identity.constant';
 import type { Cache } from 'cache-manager';
-import { TypedHttpClient } from '../../../core/http/typed-http-client';
 import { MonnifyLoginResponse } from '../dto/monnify-login-response.dto';
 import { MonnifyConfig } from './monnify.config';
 
 @Injectable()
-export class MonnifyAuthTokenService extends TypedHttpClient {
+export class MonnifyAuthTokenService {
   constructor(
     private readonly monnifyConfig: MonnifyConfig,
+    @InjectHttpClient(MonnifyConfig.AUTH_HTTP_CLIENT)
+    private readonly httpClient: HttpClient,
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
-  ) {
-    super({ baseURL: monnifyConfig.baseUrl, timeout: 30_000 });
-  }
+  ) {}
 
   async getAccessToken(): Promise<string> {
     const cachedToken = await this.cache.get<string>(
@@ -38,11 +38,18 @@ export class MonnifyAuthTokenService extends TypedHttpClient {
         `${this.monnifyConfig.apiKey}:${this.monnifyConfig.secretKey}`,
       ).toString('base64');
 
-      const { data } = await this.post<undefined, MonnifyLoginResponse>(
+      const { data } = await this.httpClient.post<MonnifyLoginResponse>(
         MonnifyConfig.LOGIN_URL,
-        undefined,
         {
           headers: { Authorization: `Basic ${basicAuth}` },
+          context: {
+            logger: MonnifyAuthTokenService.name,
+            redactResponseBody: (body: unknown) => ({
+              authenticationSuccessful:
+                (body as { requestSuccessful?: boolean } | undefined)
+                  ?.requestSuccessful ?? false,
+            }),
+          },
         },
       );
 
@@ -65,12 +72,5 @@ export class MonnifyAuthTokenService extends TypedHttpClient {
         error,
       );
     }
-  }
-
-  protected override describeResponseBody(data: unknown): unknown {
-    const authenticationSuccessful =
-      (data as { requestSuccessful?: boolean } | undefined)
-        ?.requestSuccessful ?? false;
-    return { authenticationSuccessful };
   }
 }

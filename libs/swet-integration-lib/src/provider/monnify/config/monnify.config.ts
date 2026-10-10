@@ -25,4 +25,7 @@ export class MonnifyConfig {
 
   static readonly MONNIFY_ACCESS_TOKEN_CACHE_KEY = 'monnify-access-token';
   static readonly MONNIFY_ACCESS_TOKEN_EXPIRY_SAFETY_MARGIN_SECONDS = 60;
+
+  static readonly HTTP_CLIENT = 'monnify';
+  static readonly AUTH_HTTP_CLIENT = 'monnify-auth';
 }
