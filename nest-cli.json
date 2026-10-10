@@ -28,6 +28,24 @@
         "tsConfigPath": "libs/swet-integration-lib/tsconfig.lib.json"
       }
     },
+    "swet-notification-lib": {
+      "type": "library",
+      "root": "libs/swet-notification-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/swet-notification-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/swet-notification-lib/tsconfig.lib.json"
+      }
+    },
+    "swet-notification-service": {
+      "type": "application",
+      "root": "apps/swet-notification-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/swet-notification-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/swet-notification-service/tsconfig.app.json"
+      }
+    },
     "swet-service": {
       "type": "application",
       "root": "apps/swet-service",
