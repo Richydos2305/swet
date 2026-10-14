@@ -27,6 +27,8 @@
       "@swet/common/*": ["./libs/swet-common-lib/src/*"],
       "@swet/integration": ["./libs/swet-integration-lib/src"],
       "@swet/integration/*": ["./libs/swet-integration-lib/src/*"],
+      "@swet/notification": ["./libs/swet-notification-lib/src"],
+      "@swet/notification/*": ["./libs/swet-notification-lib/src/*"],
       "apps/swet-service/src/*": ["./apps/swet-service/src/*"]
     }
   },
@@ -36,10 +38,16 @@
       "path": "./apps/swet-service/tsconfig.app.json"
     },
     {
+      "path": "./apps/swet-notification-service/tsconfig.app.json"
+    },
+    {
       "path": "./libs/swet-common-lib/tsconfig.lib.json"
     },
     {
       "path": "./libs/swet-integration-lib/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/swet-notification-lib/tsconfig.lib.json"
     },
     {
       "path": "./tsconfig.spec.json"

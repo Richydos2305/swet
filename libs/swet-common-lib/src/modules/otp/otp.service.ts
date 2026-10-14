@@ -15,7 +15,9 @@ export class OtpService {
     @Inject(CACHE_MANAGER) private readonly cache: Cache,
   ) {}
 
-  async keep(request: CreateOtpRequest): Promise<{ code: string }> {
+  async keep(
+    request: CreateOtpRequest,
+  ): Promise<{ code: string; ttlSeconds: number }> {
     const {
       purpose,
       requestedBy,
@@ -31,7 +33,7 @@ export class OtpService {
       ttlSeconds * 1000,
     );
 
-    return { code };
+    return { code, ttlSeconds };
   }
 
   async verify(request: VerifyOtpRequest): Promise<void> {

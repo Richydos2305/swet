@@ -20,7 +20,12 @@ check_boundary() {
 
 check_boundary libs/swet-common-lib apps/swet-service
 check_boundary libs/swet-common-lib @swet/integration
+check_boundary libs/swet-common-lib @swet/notification
 
 check_boundary libs/swet-integration-lib apps/swet-service
+check_boundary libs/swet-integration-lib @swet/notification
+
+check_boundary libs/swet-notification-lib apps/swet-service
+check_boundary libs/swet-notification-lib @swet/integration
 
 exit "$failed"

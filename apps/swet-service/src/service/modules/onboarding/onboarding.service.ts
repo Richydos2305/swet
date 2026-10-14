@@ -1,9 +1,9 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { SecurityConfig } from '@swet/common/config/security.config';
-import { NotificationService } from '@swet/common/core/notification/notification.service';
 import { OtpPurpose } from '@swet/common/modules/otp/otp-purpose.enum';
 import { OtpService } from '@swet/common/modules/otp/otp.service';
 import { TokenUtil } from '@swet/common/utils/token.util';
+import { NotificationDispatcher } from '@swet/notification/contract/notification-dispatcher.service';
 import { AuthenticationProvider } from 'apps/swet-service/src/data/modules/profile/user-profile.enum';
 import { UserProfileRepository } from 'apps/swet-service/src/data/modules/profile/user-profile.repository';
 import { CompleteEmailValidationDTO } from './dto/complete-email-validation.dto';
@@ -15,8 +15,8 @@ export class OnboardingService {
   constructor(
     private readonly otpService: OtpService,
     private readonly securityConfig: SecurityConfig,
-    private readonly notificationService: NotificationService,
     private readonly userProfileRepository: UserProfileRepository,
+    private readonly notificationDispatcher: NotificationDispatcher,
   ) {}
 
   async initiateEmailValidation(request: InitiateEmailValidationDTO) {
@@ -26,15 +26,22 @@ export class OnboardingService {
 
     if (emailExists) return; // FIXME: possible enumeration by timing
 
-    const { code } = await this.otpService.keep({
+    const { code, ttlSeconds } = await this.otpService.keep({
       purpose: OtpPurpose.EMAIL_VALIDATION,
       requestedBy: request.email,
     });
 
-    await this.notificationService.sendEmail(
+    this.notificationDispatcher.dispatchEmail(
       request.email,
       'Verify your email',
-      `Your verification code is ${code}`,
+      {
+        templateName: 'email-verification',
+        templateContext: {
+          code,
+          expiresInMinutes: Math.round(ttlSeconds / 60),
+        },
+        ttlSeconds,
+      },
     );
 
     return;
