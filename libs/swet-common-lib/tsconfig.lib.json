@@ -5,6 +5,7 @@
     "declaration": true,
     "rootDir": "./src",
     "outDir": "../../dist/libs/swet-common-lib",
+    "tsBuildInfoFile": "../../dist/libs/swet-common-lib/tsconfig.lib.tsbuildinfo",
     "paths": {
       "@swet/common": ["./src"],
       "@swet/common/*": ["./src/*"]

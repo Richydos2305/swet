@@ -9,6 +9,7 @@ import {
   DRIZZLE_TOKEN,
   StaticDatabaseModule,
 } from '@swet/common/core/database/database.module';
+import { IdentityVerificationModule } from '@swet/integration/identity/identity-verification.module';
 import { ClsModule } from 'nestjs-cls';
 import { join } from 'path';
 import { AuthenticationModule } from './service/modules/authentication/authentication.module';
@@ -37,6 +38,7 @@ import { OnboardingModule } from './service/modules/onboarding/onboarding.module
     StaticDatabaseModule,
     AuthenticationModule,
     OnboardingModule,
+    IdentityVerificationModule,
   ],
   controllers: [],
   providers: [
