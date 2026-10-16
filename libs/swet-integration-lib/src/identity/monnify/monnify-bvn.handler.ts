@@ -32,7 +32,9 @@ export class MonnifyBvnHandler implements IProviderHandler<
       const monnifyRequest: MonnifyBvnRequest = {
         bvn: request.bvn,
         name: request.name,
-        dateOfBirth: DateUtil.toDDMMMYYYY(request.dateOfBirth),
+        dateOfBirth: request.dateOfBirth
+          ? DateUtil.toDDMMMYYYY(request.dateOfBirth)
+          : undefined,
         mobileNo: request.phone,
       };
 
