@@ -3,9 +3,9 @@ import { MatchResult } from '../../dto/match-result.enum';
 
 export class MonnifyBvnRequest {
   bvn: string;
-  name: string;
-  dateOfBirth: string;
-  mobileNo: string;
+  name?: string;
+  dateOfBirth?: string;
+  mobileNo?: string;
 }
 
 type MonnifyFieldMatch = 'FULL_MATCH' | 'PARTIAL_MATCH' | 'NO_MATCH';

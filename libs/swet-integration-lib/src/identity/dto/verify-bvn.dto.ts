@@ -8,20 +8,29 @@ export class VerifyBvnRequest {
   @Length(11, 11)
   bvn: string;
 
-  @ApiProperty({ description: 'Full name to check against the BVN record' })
+  @ApiProperty({
+    description: 'Full name to check against the BVN record',
+    required: false,
+  })
   @IsString()
   @IsOptional()
-  name: string;
+  name?: string;
 
-  @ApiProperty({ description: 'Date of birth, ISO 8601 (YYYY-MM-DD)' })
+  @ApiProperty({
+    description: 'Date of birth, ISO 8601 (YYYY-MM-DD)',
+    required: false,
+  })
   @IsDateString()
   @IsOptional()
-  dateOfBirth: string;
+  dateOfBirth?: string;
 
-  @ApiProperty({ description: 'Mobile number to check against the BVN record' })
+  @ApiProperty({
+    description: 'Mobile number to check against the BVN record',
+    required: false,
+  })
   @IsString()
   @IsOptional()
-  phone: string;
+  phone?: string;
 }
 
 export class VerifyBvnResponse {
