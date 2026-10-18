@@ -7,7 +7,7 @@ const INTEGRATION_CONFIG_PREFIX = 'swet.integration';
 @Configuration()
 export class IntegrationConfig {
   @IsEnum(IdentityProvider)
-  @Value(`${INTEGRATION_CONFIG_PREFIX}.provider`, {
+  @Value(`${INTEGRATION_CONFIG_PREFIX}.identity.provider`, {
     default: IdentityProvider.MONNIFY,
   })
   identityProvider: IdentityProvider;

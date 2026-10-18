@@ -1,5 +1,6 @@
 export enum IdentityProvider {
   MONNIFY = 'MONNIFY',
+  MOCK = 'MOCK',
 }
 
 export enum IdentityCheckType {
